@@ -25,7 +25,6 @@ ______________________________________________________________________
 You will write a colab notebook, put in github, and YHat will turn it into an api for a webapp to consume.
 
 <div align="center">
-
 <img src="/images/github-readme.gif">
 </div>
 
