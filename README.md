@@ -23,7 +23,11 @@ ______________________________________________________________________
 ## YHat.pub just takes a script and turns it into a webapp.
 
 You will write a colab notebook, put in github, and YHat will turn it into an api for a webapp to consume.
-![PT to PL](docs/source/_static/images/general/pl_quick_start_full_compressed.gif)
+
+<div align="center">
+
+<img src="/images/github-readme.gif">
+</div>
 
 ______________________________________________________________________
 
