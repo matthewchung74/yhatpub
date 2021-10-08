@@ -47,7 +47,7 @@ Find matt_yhatpub on discord and ask to get early access.
 [![Discord](https://img.shields.io/badge/discord-chat-green.svg?logo=slack)](https://discord.gg/e37qeAGv)
 
 
-### Step 2: 
+### Step 2: Upload your model
 
 Train your model and upload it for public accessibility. This example uses Google Drive, but anywhere is fine.
 <br>
@@ -56,9 +56,16 @@ Train your model and upload it for public accessibility. This example uses Googl
   <img src="/images/save_gdrive.gif">
 </p>
 
+### Step 3: Write your predict function in a colab.
+
+This example uses `fastai`, but should work with any framework. The entire notebook is here <a href="https://github.com/yhatpub/yhatpub/blob/notebook/notebooks/fastai/lesson2.ipynb">Colab notebook</a>. Feel free to start a new colab notebook and follow along.
 
 ```bash
-pip install pytorch-lightning
+#This example installs pytorch, fastai and yhat_params, which is used to decorate your `predict` function.
+!pip install -q --upgrade --no-cache-dir torch torchvision torchaudio
+!pip install -q --upgrade --no-cache-dir fastai
+
+!pip install -Uqq --no-cache-dir git+https://github.com/yhatpub/yhat_params.git@main
 ```
 
 <!-- following section will be skipped from PyPI description -->
