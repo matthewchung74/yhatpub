@@ -20,34 +20,19 @@
 
 ______________________________________________________________________
 
-## YHat.pub just takes a script and turns it into a webapp.
+## YHat.pub Design Philosophy
 
-You will write a colab notebook, put in github, and YHat will turn it into an api for a webapp to consume.
+YHat.pub uses these principles:
 
-<div align="center">
-<img src="/images/github-readme.gif">
-</div>
-
-______________________________________________________________________
-
-## Lightning Design Philosophy
-
-Lightning structures PyTorch code with these principles:
-
-<div align="center">
-  <img src="https://pl-bolts-doc-images.s3.us-east-2.amazonaws.com/philosophies.jpg" max-height="250px">
-</div>
-
-Lightning forces the following structure to your code which makes it reusable and shareable:
-
-- Research code (the LightningModule).
-- Engineering code (you delete, and is handled by the Trainer).
-- Non-essential research code (logging, etc... this goes in Callbacks).
-- Data (use PyTorch DataLoaders or organize them into a LightningDataModule).
-
-Once you do this, you can train on multiple-GPUs, TPUs, CPUs and even in 16-bit precision without changing your code!
-
-Get started with our [2 step guide](https://pytorch-lightning.readthedocs.io/en/latest/starter/new-project.html)
+- Familiar tools (Colab, Github).
+- Minimal code. (Write a predict function with python decorators)
+- Make inference so easy, a panda could call your model.
+<p float="center">
+  <img src="https://cdn.uconnectlabs.com/wp-content/uploads/sites/46/2019/04/GitHub-Mark.png" width="150px" height="150px">
+  <img src="https://colab.research.google.com/img/colab_favicon_256px.png" width="150px" height="150px">
+  <img src="https://www.csestack.org/wp-content/uploads/2019/09/Python-Decorators-Explained.png" width="240px" height="150px">
+  <img src="https://media3.giphy.com/media/o7OChVtT1oqmk/200w.webp?cid=ecf05e47pd0unq8m3c9hvz1wlevvnomhb3hqyqw08w2b6cbu&rid=200w.webp&ct=g" width="200px" height="150px">    
+</p>
 
 ______________________________________________________________________
 
