@@ -147,8 +147,12 @@ Otherwise, you'll now want to clear your outputs and save a public repo on Githu
   <img src="/images/save_github.gif">
 </p>
 
+### Step 4: Sign into YHat.pub and start your build.
+If it doesn't work, make sure to look out for errros. Click the EXPORT button to download the logs.
 
-
+<p float="center">
+  <img src="/images/upload_build.gif">
+</p>
 
 <!-- following section will be skipped from PyPI description -->
 
