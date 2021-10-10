@@ -46,6 +46,8 @@ Find matt_yhatpub on discord and ask to get early access.
 <br>
 [![Discord](https://img.shields.io/badge/discord-chat-green.svg?logo=slack)](https://discord.gg/e37qeAGv)
 
+Got early access but want to try without creating a model? Then try the <a href="https://yhat.pub/model/0edef73f-710a-4fa1-9481-b3b394713595">fastai lesson 2</a> here.
+
 
 ### Step 2: Upload your model
 
@@ -59,8 +61,6 @@ Train your model and upload it for public accessibility. This example uses Googl
 ### Step 3: Write your predict function in a colab.
 
 This example uses `fastai`, but should work with any framework. The entire notebook is here <a href="https://github.com/yhatpub/yhatpub/blob/notebook/notebooks/fastai/lesson2.ipynb">Colab notebook</a>. Feel free to start a new colab notebook and follow along. 
-
-Can't wait? Then try the model here on <a href="https://yhat.pub/model/0edef73f-710a-4fa1-9481-b3b394713595">yhat.pub</a>
 
 ______________________________________________________________________
 
