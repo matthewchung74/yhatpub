@@ -46,7 +46,7 @@ Find matt_yhatpub on discord and ask to get early access.
 <br>
 [![Discord](https://img.shields.io/badge/discord-chat-green.svg?logo=slack)](https://discord.gg/e37qeAGv)
 
-Got early access but want to try without creating a model? Then try the <a href="https://yhat.pub/model/0edef73f-710a-4fa1-9481-b3b394713595">fastai lesson 2</a> here.
+Got early access and just want to run a model? Then try the <a href="https://yhat.pub/model/0edef73f-710a-4fa1-9481-b3b394713595">Bear Classifier</a> from <a href="https://github.com/fastai/fastbook/blob/master/02_production.ipynb">.
 
 
 ### Step 2: Upload your model
@@ -64,7 +64,7 @@ This example uses `fastai`, but should work with any framework. The entire noteb
 
 ______________________________________________________________________
 
-This example installs pytorch, fastai and yhat_params, which is used to decorate your `predict` function.
+The following cell installs pytorch, fastai and yhat_params, which is used to decorate your `predict` function.
 
 ```bash
 !pip install -q --upgrade --no-cache-dir torch torchvision torchaudio
@@ -79,7 +79,7 @@ This example installs pytorch, fastai and yhat_params, which is used to decorate
 from fastai.vision.all import *
 from yhat_params.yhat_tools import inference_test, FieldType, inference_predict
 ```
-Google drive does not allow direct downloads for files over 100MB, so you'll need to follow the snippet below to get the download url. This script places the model in a `model` folder.
+Google drive does not allow direct downloads for files over 100MB, so you'll need to follow the snippet below to get the download url. .
 
 ```bash
 #file copied from google drive
@@ -90,7 +90,7 @@ os.environ['GDRIVE_URL'] = f'https://docs.google.com/uc?export=download&id={os.e
 !echo "This is the Google drive download url $GDRIVE_URL"
 ```
 
-`wget` it from google drive. 
+`wget` it from google drive. This script places the model in a `model` folder
 ```bash
 !wget -q --no-check-certificate $GDRIVE_URL -r -A 'uc*' -e robots=off -nd
 !mkdir -p model
@@ -102,7 +102,7 @@ verify the model exists. **Warning** YHat is pretty finicky about where you plac
 !ls -l ./model/export.pkl
 ```
 
-This is the equivalent of torch `torch.load` or ts `model.load_weights`
+The following is the equivalent of torch `torch.load` or ts `model.load_weights`
 
 ```bash
 learn_inf = load_learner('./model/export.pkl')
@@ -110,7 +110,7 @@ learn_inf = load_learner('./model/export.pkl')
 
 And write your predict function. Note, you will need to decorate your function with <a href="https://github.com/yhatpub/yhat_params">inference_predict</a> which takes 2 parameters, a `dic` for input and output.
 
-These parameters are how YHat.pub maps your predict functions input/output of the web interface. The `dic` key is how you access the variable and the value is it's type. You can use autocomplete to see all the input/output types and more documentation on `inference_predict` is available at the link. 
+**Info** These parameters are how YHat.pub maps your predict functions input/output of the web interface. The `dic` key is how you access the variable and the value is it's type. You can use autocomplete to see all the input/output types and more documentation on `inference_predict` is available at the link.
 
 ```bash
 input = {"image": FieldType.PIL}
@@ -153,249 +153,6 @@ If it doesn't work, make sure to look out for errros. Click the EXPORT button to
 <p float="center">
   <img src="/images/upload_build.gif">
 </p>
-
-<!-- following section will be skipped from PyPI description -->
-
-<details>
-  <summary>Other installation options</summary>
-    <!-- following section will be skipped from PyPI description -->
-
-#### Install with optional dependencies
-
-```bash
-pip install pytorch-lightning['extra']
-```
-
-#### Conda
-
-```bash
-conda install pytorch-lightning -c conda-forge
-```
-
-#### Install stable 1.4.x
-
-the actual status of 1.4 \[stable\] is following:
-
-![CI basic testing](https://github.com/PyTorchLightning/pytorch-lightning/workflows/CI%20basic%20testing/badge.svg?branch=release%2F1.4.x&event=push)
-![CI complete testing](https://github.com/PyTorchLightning/pytorch-lightning/workflows/CI%20complete%20testing/badge.svg?branch=release%2F1.4.x&event=push)
-![PyTorch & Conda](https://github.com/PyTorchLightning/pytorch-lightning/workflows/PyTorch%20&%20Conda/badge.svg?branch=release%2F1.4.x&event=push)
-![TPU tests](https://github.com/PyTorchLightning/pytorch-lightning/workflows/TPU%20tests/badge.svg?branch=release%2F1.4.x&event=push)
-![Docs check](https://github.com/PyTorchLightning/pytorch-lightning/workflows/Docs%20check/badge.svg?branch=release%2F1.4.x&event=push)
-
-Install future release from the source
-
-```bash
-pip install git+https://github.com/PytorchLightning/pytorch-lightning.git@release/1.4.x --upgrade
-```
-
-#### Install bleeding-edge - future 1.5
-
-Install nightly from the source (no guarantees)
-
-```bash
-pip install https://github.com/PyTorchLightning/pytorch-lightning/archive/master.zip
-```
-
-or from testing PyPI
-
-```bash
-pip install -iU https://test.pypi.org/simple/ pytorch-lightning
-```
-
-</details>
-<!-- end skipping PyPI description -->
-
-### Step 1: Add these imports
-
-```python
-import os
-import torch
-from torch import nn
-import torch.nn.functional as F
-from torchvision.datasets import MNIST
-from torch.utils.data import DataLoader, random_split
-from torchvision import transforms
-import pytorch_lightning as pl
-```
-
-### Step 2: Define a LightningModule (nn.Module subclass)
-
-A LightningModule defines a full *system* (ie: a GAN, autoencoder, BERT or a simple Image Classifier).
-
-```python
-class LitAutoEncoder(pl.LightningModule):
-    def __init__(self):
-        super().__init__()
-        self.encoder = nn.Sequential(nn.Linear(28 * 28, 128), nn.ReLU(), nn.Linear(128, 3))
-        self.decoder = nn.Sequential(nn.Linear(3, 128), nn.ReLU(), nn.Linear(128, 28 * 28))
-
-    def forward(self, x):
-        # in lightning, forward defines the prediction/inference actions
-        embedding = self.encoder(x)
-        return embedding
-
-    def training_step(self, batch, batch_idx):
-        # training_step defines the train loop. It is independent of forward
-        x, y = batch
-        x = x.view(x.size(0), -1)
-        z = self.encoder(x)
-        x_hat = self.decoder(z)
-        loss = F.mse_loss(x_hat, x)
-        self.log("train_loss", loss)
-        return loss
-
-    def configure_optimizers(self):
-        optimizer = torch.optim.Adam(self.parameters(), lr=1e-3)
-        return optimizer
-```
-
-**Note: Training_step defines the training loop. Forward defines how the LightningModule behaves during inference/prediction.**
-
-### Step 3: Train!
-
-```python
-dataset = MNIST(os.getcwd(), download=True, transform=transforms.ToTensor())
-train, val = random_split(dataset, [55000, 5000])
-
-autoencoder = LitAutoEncoder()
-trainer = pl.Trainer()
-trainer.fit(autoencoder, DataLoader(train), DataLoader(val))
-```
-
-## Advanced features
-
-Lightning has over [40+ advanced features](https://pytorch-lightning.readthedocs.io/en/latest/common/trainer.html#trainer-flags) designed for professional AI research at scale.
-
-Here are some examples:
-
-<div align="center">
-  <img src="https://pl-bolts-doc-images.s3.us-east-2.amazonaws.com/features_2.jpg" max-height="600px">
-</div>
-
-<details>
-  <summary>Highlighted feature code snippets</summary>
-
-```python
-# 8 GPUs
-# no code changes needed
-trainer = Trainer(max_epochs=1, gpus=8)
-
-# 256 GPUs
-trainer = Trainer(max_epochs=1, gpus=8, num_nodes=32)
-```
-
-<summary>Train on TPUs without code changes</summary>
-
-```python
-# no code changes needed
-trainer = Trainer(tpu_cores=8)
-```
-
-<summary>16-bit precision</summary>
-
-```python
-# no code changes needed
-trainer = Trainer(precision=16)
-```
-
-<summary>Experiment managers</summary>
-
-```python
-from pytorch_lightning import loggers
-
-# tensorboard
-trainer = Trainer(logger=TensorBoardLogger("logs/"))
-
-# weights and biases
-trainer = Trainer(logger=loggers.WandbLogger())
-
-# comet
-trainer = Trainer(logger=loggers.CometLogger())
-
-# mlflow
-trainer = Trainer(logger=loggers.MLFlowLogger())
-
-# neptune
-trainer = Trainer(logger=loggers.NeptuneLogger())
-
-# ... and dozens more
-```
-
-<summary>EarlyStopping</summary>
-
-```python
-es = EarlyStopping(monitor="val_loss")
-trainer = Trainer(callbacks=[es])
-```
-
-<summary>Checkpointing</summary>
-
-```python
-checkpointing = ModelCheckpoint(monitor="val_loss")
-trainer = Trainer(callbacks=[checkpointing])
-```
-
-<summary>Export to torchscript (JIT) (production use)</summary>
-
-```python
-# torchscript
-autoencoder = LitAutoEncoder()
-torch.jit.save(autoencoder.to_torchscript(), "model.pt")
-```
-
-<summary>Export to ONNX (production use)</summary>
-
-```python
-# onnx
-with tempfile.NamedTemporaryFile(suffix=".onnx", delete=False) as tmpfile:
-    autoencoder = LitAutoEncoder()
-    input_sample = torch.randn((1, 64))
-    autoencoder.to_onnx(tmpfile.name, input_sample, export_params=True)
-    os.path.isfile(tmpfile.name)
-```
-
-</details>
-
-### Pro-level control of training loops (advanced users)
-
-For complex/professional level work, you have optional full control of the training loop and optimizers.
-
-```python
-class LitAutoEncoder(pl.LightningModule):
-    def __init__(self):
-        super().__init__()
-        self.automatic_optimization = False
-
-    def training_step(self, batch, batch_idx):
-        # access your optimizers with use_pl_optimizer=False. Default is True
-        opt_a, opt_b = self.optimizers(use_pl_optimizer=True)
-
-        loss_a = ...
-        self.manual_backward(loss_a, opt_a)
-        opt_a.step()
-        opt_a.zero_grad()
-
-        loss_b = ...
-        self.manual_backward(loss_b, opt_b, retain_graph=True)
-        self.manual_backward(loss_b, opt_b)
-        opt_b.step()
-        opt_b.zero_grad()
-```
-
-______________________________________________________________________
-
-## Advantages over unstructured PyTorch
-
-- Models become hardware agnostic
-- Code is clear to read because engineering code is abstracted away
-- Easier to reproduce
-- Make fewer mistakes because lightning handles the tricky engineering
-- Keeps all the flexibility (LightningModules are still PyTorch modules), but removes a ton of boilerplate
-- Lightning has dozens of integrations with popular machine learning tools.
-- [Tested rigorously with every new PR](https://github.com/PyTorchLightning/pytorch-lightning/tree/master/tests). We test every combination of PyTorch and Python supported versions, every OS, multi GPUs and even TPUs.
-- Minimal running speed overhead (about 300 ms per epoch compared with pure PyTorch).
-
-______________________________________________________________________
 
 ## Examples
 
