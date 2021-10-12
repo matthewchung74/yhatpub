@@ -26,7 +26,7 @@ YHat.pub uses these principles:
 
 - Familiar tools (Colab, Github).
 - Minimal code. (Write a predict function with python decorators)
-- Turn that predict function into a webapp.
+- Turn that predict function into a webapp, hosted at <a href="https://yhat.pub">YHat.pub</a>.
 - Make the webapp so easy, a panda could use it.
 <p float="center">
   <img src="https://cdn.uconnectlabs.com/wp-content/uploads/sites/46/2019/04/GitHub-Mark.png" width="150px" height="150px">
