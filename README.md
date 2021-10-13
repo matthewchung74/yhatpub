@@ -46,7 +46,7 @@ Find matt_yhatpub on discord and ask to get early access.
 <br>
 [![Discord](https://img.shields.io/badge/discord-chat-green.svg?logo=slack)](https://discord.gg/e37qeAGv)
 
-Got early access and just want to run a model? Then try the <a href="https://yhat.pub/model/0edef73f-710a-4fa1-9481-b3b394713595">Bear Classifier</a> from <a href="https://github.com/fastai/fastbook/blob/master/02_production.ipynb">.
+Got early access and just want to run a model? Then try the <a href="https://yhat.pub/model/0edef73f-710a-4fa1-9481-b3b394713595">Bear Classifier</a> from <a href="https://github.com/fastai/fastbook/blob/master/02_production.ipynb">fastai</a>.
 
 
 ### Step 2: Upload your model
