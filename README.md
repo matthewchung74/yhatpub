@@ -37,7 +37,15 @@ YHat.pub uses these principles:
 
 ______________________________________________________________________
 
-## How To Use
+## Just want to run a model already?
+
+Choose a model from below and run it:
+- [Bear Classifier](https://yhat.pub/model/0edef73f-710a-4fa1-9481-b3b394713595) with model from [fastai lesson 2](https://github.com/fastai/fastbook/blob/master/02_production.ipynb)
+- [Pet Breeds Classifier](https://yhat.pub/model/0edef73f-710a-4fa1-9481-b3b394713595) with model from [fastai lesson 5](https://github.com/fastai/fastbook/blob/master/05_pet_breeds.ipynb)
+- [Multiclassifier](https://yhat.pub/model/0edef73f-710a-4fa1-9481-b3b394713595) with model from [fastai lesson 6](https://github.com/fastai/fastbook/blob/master/06_multicat.ipynb)
+- [Regression (Poses)](https://yhat.pub/model/0edef73f-710a-4fa1-9481-b3b394713595) with model from [fastai lesson 6](https://github.com/fastai/fastbook/blob/master/06_multicat.ipynb)
+
+## How To Upload your own Model?
 
 ### Step 1: Install
 
