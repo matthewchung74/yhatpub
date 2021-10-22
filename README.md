@@ -37,7 +37,7 @@ YHat.pub uses these principles:
 
 ______________________________________________________________________
 
-## Just want to run a model already?
+## Just want to run a Model?
 
 Choose a model from below and run it:
 - [Bear Classifier](https://yhat.pub/model/0edef73f-710a-4fa1-9481-b3b394713595) with model from [fastai lesson 2](https://github.com/fastai/fastbook/blob/master/02_production.ipynb)
