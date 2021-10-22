@@ -37,13 +37,15 @@ YHat.pub uses these principles:
 
 ______________________________________________________________________
 
-## Just want to run a Model?
+## Examples
 
-Choose a model from below and run it:
+###### Fastai
 - [Bear Classifier](https://yhat.pub/model/0edef73f-710a-4fa1-9481-b3b394713595) with model from [fastai lesson 2](https://github.com/fastai/fastbook/blob/master/02_production.ipynb)
 - [Pet Breeds Classifier](https://yhat.pub/model/0edef73f-710a-4fa1-9481-b3b394713595) with model from [fastai lesson 5](https://github.com/fastai/fastbook/blob/master/05_pet_breeds.ipynb)
 - [Multiclassifier](https://yhat.pub/model/0edef73f-710a-4fa1-9481-b3b394713595) with model from [fastai lesson 6](https://github.com/fastai/fastbook/blob/master/06_multicat.ipynb)
 - [Regression (Poses)](https://yhat.pub/model/0edef73f-710a-4fa1-9481-b3b394713595) with model from [fastai lesson 6](https://github.com/fastai/fastbook/blob/master/06_multicat.ipynb)
+- More coming soon
+______________________________________________________________________
 
 ## How To Upload your own Model?
 
@@ -68,6 +70,8 @@ Train your model and upload it for public accessibility. This example uses Googl
 
 ### Step 3: Write your predict function in a colab.
 
+#### A: Pip installs
+
 This example uses `fastai`, but should work with any framework. The entire notebook is here <a href="https://github.com/yhatpub/yhatpub/blob/notebook/notebooks/fastai/lesson2.ipynb">Colab notebook</a>. Feel free to start a new colab notebook and follow along. 
 
 ______________________________________________________________________
@@ -82,6 +86,8 @@ The following cell installs pytorch, fastai and yhat_params, which is used to de
 ```
 
 **Warning** don't place `pip installs` and `imports` in the same cell. The imports might not work correctly if done that way.
+
+#### B: Download model
 
 ```bash
 from fastai.vision.all import *
@@ -110,6 +116,8 @@ verify the model exists. **Warning** YHat is pretty finicky about where you plac
 !ls -l ./model/export.pkl
 ```
 
+#### C: Load and Run Learner
+
 The following is the equivalent of torch `torch.load` or ts `model.load_weights`
 
 ```bash
@@ -131,6 +139,8 @@ def predict(params):
     return {"text": str(result[0])}
 ```
 
+#### D: Test your function
+
 For testing, first, import `in_colab` since you only want to run this test in colab. YHat will use this colab in a callable API, so you don't want your test to run every time `predict` is called. Next, import `inference_test` which is a function to make sure your `predict` will run with YHat.
 
 Now, inside a `in_colab` boolean, first get whatever test data you'll need, in this case, an image. Then you'll call your predict function, wrapped inside  `inference_test`, passing in the same params you defined above. If something is missing, you should see an informative error. Otherwise, you'll see something like
@@ -148,6 +158,9 @@ if in_colab():
 ```
 
 If you run into errors, feel free to hop into Discord. 
+
+#### E: Upload to Github
+
 
 Otherwise, you'll now want to clear your outputs and save a public repo on Github.
 
