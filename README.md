@@ -50,13 +50,10 @@ ______________________________________________________________________
 
 ### Step 1: Install
 
-Find matt_yhatpub on discord and ask to get early access. 
+Find matthewchung74 on discord and ask to get early access. 
 <br>
 <br>
 [![Discord](https://img.shields.io/badge/discord-chat-green.svg?logo=slack)](https://discord.gg/e37qeAGv)
-
-Got early access and just want to run a model? Then try the <a href="https://yhat.pub/model/0edef73f-710a-4fa1-9481-b3b394713595">Bear Classifier</a> from <a href="https://github.com/fastai/fastbook/blob/master/02_production.ipynb">fastai</a>.
-
 
 ### Step 2: Upload your model
 
@@ -78,9 +75,7 @@ ______________________________________________________________________
 The following cell installs pytorch, fastai and yhat_params, which is used to decorate your `predict` function.
 
 ```bash
-!pip install -q --upgrade --no-cache-dir torch torchvision torchaudio
 !pip install -q --upgrade --no-cache-dir fastai
-
 !pip install -Uqq --no-cache-dir git+https://github.com/yhatpub/yhat_params.git@main
 ```
 
@@ -123,13 +118,13 @@ The following is the equivalent of torch `torch.load` or ts `model.load_weights`
 learn_inf = load_learner('./model/export.pkl')
 ```
 
-And write your predict function. Note, you will need to decorate your function with <a href="https://github.com/yhatpub/yhat_params">inference_predict</a> which takes 2 parameters, a `dic` for input and output.
+And write your predict function. Note, you will need to decorate your function with <a href="https://github.com/yhatpub/yhat_params">inference_predict</a> which takes 2 parameters, a `input` and `output`.
 
-**Info** These parameters are how YHat.pub maps your predict functions input/output of the web interface. The `dic` key is how you access the variable and the value is it's type. You can use autocomplete to see all the input/output types and more documentation on `inference_predict` is available at the link.
+These parameters are how YHat.pub maps your predict functions `input`/`output` of the web interface. The key, in this case, `image` or `text` is how you access the variable and the value is it's type, in this case, `FieldType.PIL` or `FieldType.Text`. You can use autocomplete to see all the `input`/`output` types and more documentation on `inference_predict` is available at the link.
 
 ```bash
-input = {"image": FieldType.PIL}
-output = {"text": FieldType.Text}
+input = {"image": FieldType.PIL} # PIL image
+output = {"text": FieldType.Text} # str 
 
 @inference_predict(input=input, output=output)
 def predict(params):
@@ -140,9 +135,9 @@ def predict(params):
 
 #### D: Test your function
 
-For testing, first, import `in_colab` since you only want to run this test in colab. YHat will use this colab in a callable API, so you don't want your test to run every time `predict` is called. Next, import `inference_test` which is a function to make sure your `predict` will run with YHat.
+For testing, first, import `in_colab` since you only want to run this test in colab. YHat will turn this colab in an imported script, so you want to tell YHat not to run this test outside of colab. Next, import `inference_test` which is a function to make sure your `predict` will run ok with YHat.
 
-Now, inside a `in_colab` boolean, first get whatever test data you'll need, in this case, an image. Then you'll call your predict function, wrapped inside  `inference_test`, passing in the same params you defined above. If something is missing, you should see an informative error. Otherwise, you'll see something like
+Now, inside `in_colab()` , first get whatever test data you'll need, in this case, an image. Then you'll call your predict function, wrapped inside `inference_test`, passing in the same params you defined above. If something is missing, you should see an informative error. Otherwise, you'll see something like
 `Please take a look and verify the results`
 
 ```bash
