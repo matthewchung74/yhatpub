@@ -18,6 +18,7 @@
 
 ______________________________________________________________________
 
+
 ## YHat.pub Design Philosophy
 
 YHat.pub uses these principles:
@@ -37,13 +38,21 @@ ______________________________________________________________________
 
 ## Try it out
 
-###### Fastai
-- [Bear Classifier](https://yhat.pub/model/6aabd372-f61e-4202-824a-fa0edff1f61f) with model from [fastai lesson 2](https://github.com/fastai/fastbook/blob/master/02_production.ipynb)
-- [Pet Breeds Classifier](https://www.yhat.pub/model/32cb1825-7de5-462b-a94d-85311110f569) with model from [fastai lesson 5](https://github.com/fastai/fastbook/blob/master/05_pet_breeds.ipynb)
-- [Multiclassifier](https://yhat.pub/model/da71d155-7e6d-430b-a72b-b1dcb14ba7e6) with model from [fastai lesson 6](https://github.com/fastai/fastbook/blob/master/06_multicat.ipynb)
-- [Regression (Poses)](https://yhat.pub/model/a153c6a6-597a-41ce-8e18-362a7693cda3) with model from [fastai lesson 6](https://github.com/fastai/fastbook/blob/master/06_multicat.ipynb)
-- [Text Generation](https://yhat.pub/model/fa228f32-d8dd-4d41-9648-d84d3fcf1148) with model from [fastai lesson 10](https://github.com/fastai/fastbook/blob/master/10_nlp.ipynb)
-- [Movie Review Classification](https://yhat.pub/model/aac2595f-93a2-41a4-84dc-3fd5a8a40f72) with model from [fastai lesson 10](https://github.com/fastai/fastbook/blob/master/10_nlp.ipynb)
+###### Click on a link below to try any of these examples from Fastai
+
+<p float="center">
+  <img src="images/teddy.jpg" width="150px" height="150px">
+  <img src="https://colab.research.google.com/img/colab_favicon_256px.png" width="150px" height="150px">
+  <img src="https://www.csestack.org/wp-content/uploads/2019/09/Python-Decorators-Explained.png" width="240px" height="150px">
+  <img src="https://media3.giphy.com/media/o7OChVtT1oqmk/200w.webp?cid=ecf05e47pd0unq8m3c9hvz1wlevvnomhb3hqyqw08w2b6cbu&rid=200w.webp&ct=g" width="200px" height="150px">    
+</p>
+  
+
+  
+  
+  
+  
+
 ______________________________________________________________________
 
 ## How To Upload your own Model?
