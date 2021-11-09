@@ -41,11 +41,14 @@ ______________________________________________________________________
 ###### Click on a link below to try any of these examples from Fastai
 
 <p float="center">
-  <a target="_blank" href="https://www.yhat.pub/model/6aabd372-f61e-4202-824a-fa0edff1f61f/run_model/6aabd372-f61e-4202-824a-fa0edff1f61f">
+  <a href="https://www.yhat.pub/model/6aabd372-f61e-4202-824a-fa0edff1f61f/run_model/6aabd372-f61e-4202-824a-fa0edff1f61f" target="_blank" >
     <img src="images/teddy.jpg" width="150px" height="150px">
   </a>
-  <a target="_blank" href="https://www.yhat.pub/model/a153c6a6-597a-41ce-8e18-362a7693cda3/run_model/a153c6a6-597a-41ce-8e18-362a7693cda3">
+  <a href="https://www.yhat.pub/model/a153c6a6-597a-41ce-8e18-362a7693cda3/run_model/a153c6a6-597a-41ce-8e18-362a7693cda3" target="_blank" >
     <img src="images/pose.jpg" width="150px" height="150px">
+  </a>
+  <a href="https://www.yhat.pub/model/fa228f32-d8dd-4d41-9648-d84d3fcf1148/run_model/fa228f32-d8dd-4d41-9648-d84d3fcf1148" target="_blank" >
+    <img src="images/text.jpg" width="150px" height="150px">
   </a>
 </p>
   
