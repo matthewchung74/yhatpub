@@ -42,7 +42,7 @@ ______________________________________________________________________
 
 <p float="center">
   <img src="images/teddy.jpg" width="150px" height="150px">
-  <img src="https://colab.research.google.com/img/colab_favicon_256px.png" width="150px" height="150px">
+  <img src="images/pose.jpg" width="150px" height="150px">
   <img src="https://www.csestack.org/wp-content/uploads/2019/09/Python-Decorators-Explained.png" width="240px" height="150px">
   <img src="https://media3.giphy.com/media/o7OChVtT1oqmk/200w.webp?cid=ecf05e47pd0unq8m3c9hvz1wlevvnomhb3hqyqw08w2b6cbu&rid=200w.webp&ct=g" width="200px" height="150px">    
 </p>
