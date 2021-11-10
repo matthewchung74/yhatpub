@@ -18,9 +18,8 @@
 
 ______________________________________________________________________
 
-## YHat.pub Design Philosophy
 
-YHat.pub uses these principles:
+### YHat.pub Design Philosophy
 
 - Familiar tools (Colab, Github).
 - Minimal code. (Write a predict function with python decorators)
@@ -35,27 +34,81 @@ YHat.pub uses these principles:
 
 ______________________________________________________________________
 
-## Try it out
+### Try it out
 
-###### Fastai
-- [Bear Classifier](https://yhat.pub/model/6aabd372-f61e-4202-824a-fa0edff1f61f) with model from [fastai lesson 2](https://github.com/fastai/fastbook/blob/master/02_production.ipynb)
-- [Pet Breeds Classifier](https://www.yhat.pub/model/32cb1825-7de5-462b-a94d-85311110f569) with model from [fastai lesson 5](https://github.com/fastai/fastbook/blob/master/05_pet_breeds.ipynb)
-- [Multiclassifier](https://yhat.pub/model/da71d155-7e6d-430b-a72b-b1dcb14ba7e6) with model from [fastai lesson 6](https://github.com/fastai/fastbook/blob/master/06_multicat.ipynb)
-- [Regression (Poses)](https://yhat.pub/model/a153c6a6-597a-41ce-8e18-362a7693cda3) with model from [fastai lesson 6](https://github.com/fastai/fastbook/blob/master/06_multicat.ipynb)
-- [Text Generation](https://yhat.pub/model/fa228f32-d8dd-4d41-9648-d84d3fcf1148) with model from [fastai lesson 10](https://github.com/fastai/fastbook/blob/master/10_nlp.ipynb)
-- [Movie Review Classification](https://yhat.pub/model/aac2595f-93a2-41a4-84dc-3fd5a8a40f72) with model from [fastai lesson 10](https://github.com/fastai/fastbook/blob/master/10_nlp.ipynb)
+###### Click on a link below to try any of these examples from Fastai
+
+<p float="center">
+  <a href="https://www.yhat.pub/model/6aabd372-f61e-4202-824a-fa0edff1f61f/run_model/6aabd372-f61e-4202-824a-fa0edff1f61f" target="_blank" >
+    <img src="images/teddy.jpg" width="150px" height="150px">
+  </a>
+  &nbsp;
+  <a href="https://www.yhat.pub/model/a153c6a6-597a-41ce-8e18-362a7693cda3/run_model/a153c6a6-597a-41ce-8e18-362a7693cda3" target="_blank" >
+    <img src="images/pose.jpg" width="150px" height="150px">
+  </a>
+  &nbsp;
+  <a href="https://www.yhat.pub/model/fa228f32-d8dd-4d41-9648-d84d3fcf1148/run_model/fa228f32-d8dd-4d41-9648-d84d3fcf1148" target="_blank" >
+    <img src="images/text.jpg" width="150px" height="150px">
+  </a>
+</p>
+
 ______________________________________________________________________
 
-## How To Upload your own Model?
-
-### Step 1: Install
-
-Find matthewchung74 on discord and ask to get early access. 
-<br>
+### Need help?
+Hop in Discord and ask whatever you like
 <br>
 [![Discord](https://img.shields.io/badge/discord-chat-green.svg?logo=slack)](https://discord.gg/e37qeAGv)
+______________________________________________________________________
 
-### Step 2: Upload your model
+### A Little Example 
+
+#### Step 1: Install
+
+Open a Google colab and install dependencies
+```
+!pip install -q --no-cache-dir git+https://github.com/yhatpub/yhat_params.git@main
+```
+
+#### Step 2: Write Predict Function
+
+```
+from yhat_params.yhat_tools import inference_test, FieldType, inference_predict
+from PIL import ImageFilter
+
+input = {"text": FieldType.Text, "image": FieldType.PIL}
+output = {"text": FieldType.Text, "image": FieldType.PIL}
+
+@inference_predict(input=input, output=output)
+def predict(params):
+    text = f"hello world {params['text']}"
+    image = params['image'].convert("RGB")
+    image = image.filter(ImageFilter.EMBOSS)
+    return {"text": text, "image": image}
+```
+#### Step 3: Test your code
+
+```
+from yhat_params.yhat_tools import in_colab
+from PIL import Image
+import torch
+
+if in_colab():
+    torch.hub.download_url_to_file('https://upload.wikimedia.org/wikipedia/en/4/48/Blank.JPG', '1x1.jpg')
+    img = Image.open('1x1.jpg')  
+    inference_test(predict_func=predict, params={'text': 'my text', 'image': img})
+```
+
+#### Step 4: Commit to Github and run on YHat.pub
+
+Go to <a href="https://YHat.pub">YHat.pub</a> and upload your model and run!
+______________________________________________________________________
+
+
+### A Bigger Example
+
+This example is the teddy bear detector (lesson 2) from <a href="http://fast.ai">fast.ai</a>. The entire notebook is here <a href="https://github.com/yhatpub/yhatpub/blob/notebook/notebooks/fastai/lesson2.ipynb">Colab notebook</a>. Feel free to start a new colab notebook and follow along.
+
+#### Step 1: Upload your model
 
 Train your model and upload it for public accessibility. This example uses Google Drive, but anywhere is fine.
 <br>
@@ -64,11 +117,7 @@ Train your model and upload it for public accessibility. This example uses Googl
   <img src="/images/save_gdrive.gif">
 </p>
 
-### Step 3: Write your predict function in a colab.
-
-#### A: Pip installs
-
-This example uses `fastai`, but should work with any framework. The entire notebook is here <a href="https://github.com/yhatpub/yhatpub/blob/notebook/notebooks/fastai/lesson2.ipynb">Colab notebook</a>. Feel free to start a new colab notebook and follow along. 
+#### Step 2: Do your Pip installs.
 
 ______________________________________________________________________
 
@@ -79,19 +128,13 @@ The following cell installs pytorch, fastai and yhat_params, which is used to de
 !pip install -Uqq --no-cache-dir git+https://github.com/yhatpub/yhat_params.git@main
 ```
 
-**Warning** don't place `pip installs` and `imports` in the same cell. The imports might not work correctly if done that way.
+#### Step 3: Download your model
 
-#### B: Download model
-
-```bash
-from fastai.vision.all import *
-from yhat_params.yhat_tools import inference_test, FieldType, inference_predict
-```
 Google drive does not allow direct downloads for files over 100MB, so you'll need to follow the snippet below to get the download url. .
 
 ```bash
 #file copied from google drive
-google_drive_url = "https://drive.google.com/file/d/1s-fQPvk8l7CTUiiRvKzecijSluDnoZ27/view?usp=sharing"
+google_drive_url = "Add url to google drive model here or use this" # https://drive.google.com/file/d/1s-fQPvk8l7CTUiiRvKzecijSluDnoZ27/view?usp=sharing
 import os
 os.environ['GOOGLE_FILE_ID'] = google_drive_url.split('/')[5]
 os.environ['GDRIVE_URL'] = f'https://docs.google.com/uc?export=download&id={os.environ["GOOGLE_FILE_ID"]}'
@@ -110,17 +153,18 @@ verify the model exists. **Warning** YHat is pretty finicky about where you plac
 !ls -l ./model/export.pkl
 ```
 
-#### C: Load and Run Learner
+#### Step 4: Load and Run Learner
 
 The following is the equivalent of torch `torch.load` or ts `model.load_weights`
 
 ```bash
+from fastai.vision.all import *
 learn_inf = load_learner('./model/export.pkl')
 ```
 
 And write your predict function. Note, you will need to decorate your function with <a href="https://github.com/yhatpub/yhat_params">inference_predict</a> which takes 2 parameters, a `input` and `output`.
 
-These parameters are how YHat.pub maps your predict functions `input`/`output` of the web interface. The key, in this case, `image` or `text` is how you access the variable and the value is it's type, in this case, `FieldType.PIL` or `FieldType.Text`. You can use autocomplete to see all the `input`/`output` types and more documentation on `inference_predict` is available at the link.
+These parameters are how YHat.pub maps your predict functions `input`/`output` of the web interface. The key, in this case, `image` or `text` is how you access the variable and the value is it's type, in this case, `FieldType.PIL` or `FieldType.Text`.
 
 ```bash
 input = {"image": FieldType.PIL} # PIL image
@@ -133,7 +177,7 @@ def predict(params):
     return {"text": str(result[0])}
 ```
 
-#### D: Test your function
+#### Step 5: Test your function
 
 For testing, first, import `in_colab` since you only want to run this test in colab. YHat will turn this colab in an imported script, so you want to tell YHat not to run this test outside of colab. Next, import `inference_test` which is a function to make sure your `predict` will run ok with YHat.
 
@@ -152,9 +196,10 @@ if in_colab():
 ```
 
 If you run into errors, feel free to hop into Discord. 
+<br>
+[![Discord](https://img.shields.io/badge/discord-chat-green.svg?logo=slack)](https://discord.gg/e37qeAGv)
 
-#### E: Upload to Github
-
+#### Step 6: Upload to Github
 
 Otherwise, you'll now want to clear your outputs and save a public repo on Github.
 
@@ -162,7 +207,7 @@ Otherwise, you'll now want to clear your outputs and save a public repo on Githu
   <img src="/images/save_github.gif">
 </p>
 
-### Step 4: Sign into YHat.pub and start your build.
+#### Step 7: Sign into YHat.pub and start your build.
 If it doesn't work, make sure to look out for errros. Click the EXPORT button to download the logs.
 
 <p float="center">
