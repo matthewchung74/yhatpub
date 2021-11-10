@@ -60,7 +60,7 @@ Hop in Discord and ask whatever you like
 [![Discord](https://img.shields.io/badge/discord-chat-green.svg?logo=slack)](https://discord.gg/e37qeAGv)
 ______________________________________________________________________
 
-### A hello world example
+### A Little Example 
 
 #### Step 1: Install
 
@@ -85,30 +85,6 @@ def predict(params):
     image = image.filter(ImageFilter.EMBOSS)
     return {"text": text, "image": image}
 ```
-
-
-#### Step 2: Upload your model
-
-Write a predict function
-```
-import torch.nn.functional as F
-import torch
-import io
-import base64
-import json
-
-from yhat_params.yhat_tools import inference_test, FieldType, inference_predict
-
-input = {"text": FieldType.Text, "image": FieldType.PIL}
-output = {"text": FieldType.Text, "image": FieldType.PIL}
-
-@inference_predict(input=input, output=output)
-def predict(params):
-    text = params['text']
-    image = params['image'].convert("RGB")
-    return {"text": text, "image": image}
-```
-
 #### Step 3: Test your code
 
 ```
@@ -128,7 +104,7 @@ Go to <a href="https://YHat.pub">YHat.pub</a> and upload your model and run!
 ______________________________________________________________________
 
 
-### A Bigger Example.
+### A Bigger Example
 
 This example is the teddy bear detector (lesson 2) from <a href="http://fast.ai">fast.ai</a>. The entire notebook is here <a href="https://github.com/yhatpub/yhatpub/blob/notebook/notebooks/fastai/lesson2.ipynb">Colab notebook</a>. Feel free to start a new colab notebook and follow along.
 
@@ -151,8 +127,6 @@ The following cell installs pytorch, fastai and yhat_params, which is used to de
 !pip install -q --upgrade --no-cache-dir fastai
 !pip install -Uqq --no-cache-dir git+https://github.com/yhatpub/yhat_params.git@main
 ```
-
-**Warning** don't place `pip installs` and `imports` in the same cell. The imports might not work correctly if done that way.
 
 #### Step 3: Download your model
 
@@ -190,7 +164,7 @@ learn_inf = load_learner('./model/export.pkl')
 
 And write your predict function. Note, you will need to decorate your function with <a href="https://github.com/yhatpub/yhat_params">inference_predict</a> which takes 2 parameters, a `input` and `output`.
 
-These parameters are how YHat.pub maps your predict functions `input`/`output` of the web interface. The key, in this case, `image` or `text` is how you access the variable and the value is it's type, in this case, `FieldType.PIL` or `FieldType.Text`. You can use autocomplete to see all the `input`/`output` types and more documentation on `inference_predict` is available at the link.
+These parameters are how YHat.pub maps your predict functions `input`/`output` of the web interface. The key, in this case, `image` or `text` is how you access the variable and the value is it's type, in this case, `FieldType.PIL` or `FieldType.Text`.
 
 ```bash
 input = {"image": FieldType.PIL} # PIL image
